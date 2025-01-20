@@ -153,12 +153,12 @@
     </style>
 </head>
 <body>
-    <h1>Music Streaming Churn Prediction Form</h1>
+    <h1>Music Streaming Customer Churn Prediction Form</h1>
     <form action="/predict" method="POST">
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" placeholder="Enter your age (18-80)" required>
 
-        <label for="subscription_type">Subscription Type:</label>
+        <label for="subscription_type">Subscription Type</label>
         <select id="subscription_type" name="subscription_type" required>
             <option value="Free">Free</option>
             <option value="Student">Student</option>
@@ -166,7 +166,7 @@
             <option value="Family">Family</option>
         </select>
 
-        <label for="num_subscription_pauses">Number of Subscription Pauses:</label>
+        <label for="num_subscription_pauses">Number of Subscription Pauses</label>
         <select id="num_subscription_pauses" name="num_subscription_pauses" required>
             <option value="0">0</option>
             <option value="1">1</option>
@@ -175,17 +175,17 @@
             <option value="4">4</option>
         </select>
 
-        <label for="customer_service_inquiries">Customer Service Inquiries:</label>
+        <label for="customer_service_inquiries">Customer Service Inquiries</label>
         <select id="customer_service_inquiries" name="customer_service_inquiries" required>
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
             <option value="High">High</option>
         </select>
 
-        <label for="weekly_hours">Weekly Hours:</label>
+        <label for="weekly_hours">Weekly Hours</label>
         <input type="number" id="weekly_hours" name="weekly_hours" placeholder="Enter weekly hours (0-50)" required>
         
-        <label for="song_skip_rate">Song Skip Rate:</label>
+        <label for="song_skip_rate">Song Skip Rate</label>
         <select id="song_skip_rate" name="song_skip_rate" required>
             <option value="No Skips">No Skips</option>
             <option value="Light Skips">Light Skips</option>
@@ -193,10 +193,10 @@
             <option value="High Skips">High Skips</option>
         </select>
 
-        <label for="weekly_unique_songs">Weekly Unique Songs:</label>
+        <label for="weekly_unique_songs">Weekly Unique Songs</label>
         <input type="number" id="weekly_unique_songs" name="weekly_unique_songs" placeholder="Enter number of unique songs (0-300)" required>
         
-        <label for="notifications_clicked">Notifications Clicked:</label>
+        <label for="notifications_clicked">Notifications Clicked</label>
         <input type="number" id="notifications_clicked" name="notifications_clicked" placeholder="Enter number of notifications clicked (0-50)" required>
 
         <input type="submit" value="Predict">
