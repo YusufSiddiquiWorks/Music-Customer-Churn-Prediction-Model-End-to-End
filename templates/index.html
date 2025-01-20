@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Form with Music Notes</title>
+    <style>
+        /* Resetting margins and paddings for consistent layout */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%; /* Ensures the body takes the full viewport height */
+            width: 100%; /* Full width */
+            overflow: hidden; /* Prevent vertical scrollbar */
+        }
+
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: 'Circular', 'Helvetica', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+            padding: 20px;
+            text-align: center; /* Center all text */
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            text-align: center; /* Ensures the heading is centered */
+        }
+
+        form {
+            background-color: #1DB954;
+            padding: 20px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            max-width: 400px; /* Shrunk form size */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+            height: auto; /* Make the form's height auto, based on content */
+            max-height: 80vh; /* Form takes up at most 80% of the viewport height */
+            overflow-y: hidden; /* Stop scrolling inside the form */
+        }
+
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: center; /* Center labels */
+            font-size: 1em;
+            width: 100%;
+        }
+
+        input,
+        select {
+            margin: 8px 0;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+            text-align: center; /* Center text inside input/select */
+        }
+
+        input[type="submit"] {
+            background-color: #191414;
+            color: white;
+            cursor: pointer;
+            font-size: 1.1em;
+            padding: 12px;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: white;
+            color: #191414;
+        }
+
+        /* Music Notes Animation */
+        .music-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .note {
+            position: absolute;
+            font-size: 40px;
+            color: #1DB954;
+            opacity: 1;
+            animation: floatNotesLeftToRight linear infinite;
+        }
+
+        @keyframes floatNotesLeftToRight {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100vw);
+            }
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            form {
+                padding: 15px;
+                max-width: 90%;
+                max-height: 70vh; /* Adjust form height for smaller screens */
+            }
+            input[type="submit"] {
+                font-size: 1em;
+                padding: 10px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 1.6em;
+            }
+            form {
+                padding: 10px;
+                max-width: 95%;
+                max-height: 60vh; /* Further reduce form height for very small screens */
+            }
+            input[type="submit"] {
+                font-size: 1em;
+                padding: 8px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Music Streaming Churn Prediction Form</h1>
+    <form action="/predict" method="POST">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" placeholder="Enter your age (18-80)" required>
+
+        <label for="subscription_type">Subscription Type:</label>
+        <select id="subscription_type" name="subscription_type" required>
+            <option value="Free">Free</option>
+            <option value="Student">Student</option>
+            <option value="Premium">Premium</option>
+            <option value="Family">Family</option>
+        </select>
+
+        <label for="num_subscription_pauses">Number of Subscription Pauses:</label>
+        <select id="num_subscription_pauses" name="num_subscription_pauses" required>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+
+        <label for="customer_service_inquiries">Customer Service Inquiries:</label>
+        <select id="customer_service_inquiries" name="customer_service_inquiries" required>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <label for="weekly_hours">Weekly Hours:</label>
+        <input type="number" id="weekly_hours" name="weekly_hours" placeholder="Enter weekly hours (0-50)" required>
+        
+        <label for="song_skip_rate">Song Skip Rate:</label>
+        <select id="song_skip_rate" name="song_skip_rate" required>
+            <option value="No Skips">No Skips</option>
+            <option value="Light Skips">Light Skips</option>
+            <option value="Average Skips">Average Skips</option>
+            <option value="High Skips">High Skips</option>
+        </select>
+
+        <label for="weekly_unique_songs">Weekly Unique Songs:</label>
+        <input type="number" id="weekly_unique_songs" name="weekly_unique_songs" placeholder="Enter number of unique songs (0-300)" required>
+        
+        <label for="notifications_clicked">Notifications Clicked:</label>
+        <input type="number" id="notifications_clicked" name="notifications_clicked" placeholder="Enter number of notifications clicked (0-50)" required>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    <!-- Music Background with Floating Notes -->
+    <div class="music-background" id="music-background"></div>
+
+    <script>
+        // Function to create a new music note
+        function createMusicNote() {
+            const noteTypes = ['♪', '♫'];
+            const note = document.createElement('div');
+            note.classList.add('note');
+            
+            // Set the note content to a random type
+            note.textContent = noteTypes[Math.floor(Math.random() * noteTypes.length)];
+            
+            // Randomize the note's starting position and animation duration
+            note.style.top = `${Math.floor(Math.random() * 100)}%`;  // Random vertical position
+            note.style.animationDuration = `${Math.floor(Math.random() * 7) + 10}s`;  // Random speed (10s to 17s) for slower movement
+            
+            // Append the note to the music background
+            document.getElementById('music-background').appendChild(note);
+            
+            // Remove the note once it has finished its animation
+            setTimeout(() => {
+                note.remove();
+            }, parseInt(note.style.animationDuration) * 1000);
+        }
+
+        // Create a new note every 1 second
+        setInterval(createMusicNote, 1000);
+    </script>
+</body>
+</html>
