@@ -87,7 +87,7 @@ This project serves as a demonstration of my skills in:
 - Cloud Deployment and Continuous Integration/Deployment (CI/CD)
 
 ## License
-This project is licensed under the Apache2.0 License.
+This project is licensed under the MIT License.
 
 ## Acknowledgements
 - Dataset sourced from [Kaggle].
